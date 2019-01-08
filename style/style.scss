@@ -45,20 +45,21 @@ body {
         justify-content: space-between;
 
         #vilans {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            width: 80%;
+        left: 0;
+           
 
-            #row_1,
-            #row_2,
-            #row_3 {
-                display: flex;
-                justify-content: center;
-
-                img {
-                    width: 7%;
-                    height: 10%;
-                    margin: 10px;
-                }
+            img {
+                width: 7%;
+                height: 10%;
+                margin: 10px;
             }
         }
+
 
         #player_container {
             display: flex;

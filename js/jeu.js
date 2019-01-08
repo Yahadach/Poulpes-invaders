@@ -1,3 +1,4 @@
+/*****************************************************PLAYER********************************************/
 var element = document.getElementById('player');
 
 element.style.width = '90px';
@@ -56,6 +57,55 @@ document.addEventListener("keypress", function (event) {
 
 });
 
+/*****************************************************VILANS********************************************/
+window.onload = requestAnimationFrame(animerVilans);
+
+
+var game = document.getElementById("game");
+console.log(game);
+var vilans = document.getElementById("vilans");
+console.log(vilans);
+var vitesse = 35; // Valeur du déplacement en pixels
+console.log(vitesse);
+// Conversion en nombre du diamètre du vilans (valeur de la forme "XXpx")
+var diametreVilans = parseFloat(getComputedStyle(vilans).width);
+console.log(diametreVilans);
+var animationId = null; // Identifiant de l'animation
+console.log(animationId);
+var xMin = 0; // Position gauche minimale (bord gauche)
+console.log(xMin);
+var direction = 1; // Sens de déplacement : 1 = droit, 2 = gauche
+console.log(direction);
+
+// Déplace le vilans vers la gauche ou la droite
+function animerVilans() {
+    console.log(vilans);
+    // Conversion en nombre de la position gauche du vilans (valeur de la forme "XXpx")
+    var xVilans = parseFloat(getComputedStyle(vilans).left);
+    // Conversion en nombre de la largeur du game (valeur de la forme "XXpx")
+    var xMax = parseFloat(getComputedStyle(game).width);
+    var y = parseFloat(getComputedStyle(vilans).top);
+
+    var yVilans = parseFloat(getComputedStyle(vilans).top); // pour le faire descendre
+    // Si le vilans arrive à un bord du game
+    if ((xVilans + diametreVilans > xMax) || (xVilans < xMin)) {
+        // Déscend le vilans et inverse le sens de déplacement du vilans
+        direction *= -1;
+        y = y + 25;
+        y = y + "px";
+        vilans.style.top = y;
+    }
+    if (y >= 500) {
+        vilans.parentNode.removeChild(vilans);
+        return;
+
+    }
+
+    // Déplacement du vilans dans le sens actuel
+    vilans.style.left = (xVilans + vitesse * direction) + "px";
+    // Demande au navigateur d'appeler animerVilans dès que possible
+    animationId = requestAnimationFrame(animerVilans);
+}
 
 
 /**********************************************************************/

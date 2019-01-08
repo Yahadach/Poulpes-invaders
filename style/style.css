@@ -37,15 +37,15 @@ body #game {
   flex-direction: column;
   justify-content: space-between;
 }
-body #game #vilans #row_1,
-body #game #vilans #row_2,
-body #game #vilans #row_3 {
+body #game #vilans {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  width: 80%;
+  left: 0;
 }
-body #game #vilans #row_1 img,
-body #game #vilans #row_2 img,
-body #game #vilans #row_3 img {
+body #game #vilans img {
   width: 7%;
   height: 10%;
   margin: 10px;
