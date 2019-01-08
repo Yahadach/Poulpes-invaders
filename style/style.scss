@@ -1,14 +1,27 @@
-body {
+@font-face {
+    font-family: "pixel";
+    src: url("../font/uni0553.ttf");
+}
 
+body {
+    position: absolute;
+    font-family: "pixel";
+    width: 100%;
+    text-transform: uppercase;
 
     header {
 
         min-height: 80px;
-        background-color: cornflowerblue;
         position: absolute;
         top: 0;
         z-index: 2;
         width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        p {
+            font-size: 35px;
+        }
 
         h1 {
             color: coral;
@@ -17,32 +30,61 @@ body {
 
     }
 
-    section{
+    #game {
 
-        background-color: crimson;
-        position: relative;
+        background-image: url(../img/poulpe_bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         padding-bottom: 50px;
         padding-top: 80px;
         height: 100vh;
         display: flex;
-        align-items: flex-end;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: space-between;
 
-        #player{
+        #vilans {
 
-            width: 50px;
-            height: 50px;
-            background-color: green;
+            #row_1,
+            #row_2,
+            #row_3 {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 7%;
+                    height: 10%;
+                    margin: 10px;
+                }
+            }
         }
+
+        #player {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 10%;
+                height: 10%;
+            }
+        }
+
     }
 
-    footer{
+    footer {
 
-        background-color: gold;
+
         min-height: 50px;
         position: absolute;
         bottom: 0;
         z-index: 2;
-        width: 100%
+
+        width: 100%;
+
+        p {
+            color: white;
+            margin-left: 5%;
+            margin-top: 10px;
+        }
     }
 }
