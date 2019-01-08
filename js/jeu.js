@@ -1,8 +1,10 @@
 var element = document.getElementById('player');
 
-element.style.width = '50px';
-element.style.height = '50px';
+element.style.width = '90px';
+element.style.height = '60px';
 var playerWidth = parseInt(element.style.width);
+console.log(playerWidth);
+console.log(element.style.width)
 
 element.style.position = 'relative';
 element.style.left = '0px';
@@ -16,24 +18,26 @@ document.addEventListener("keypress", function (event) {
 
 
     var screenWidth = window.innerWidth;
+    console.log(screenWidth);
     var leftSpace = element.offsetLeft;
+    console.log(leftSpace);
     var key = event.which || event.keyCode || 0;  
+
 
     if (leftSpace > 0) {
 
-        if (key == 37) {
-
-            element.style.backgroundColor = '#faf39F';
-
+        if (key == 113) {
             element.style.left = parseInt(element.style.left) - 10 + 'px';
         }
     }
 
     var coco = screenWidth - playerWidth;
+    console.log(coco);
+    
 
     if (leftSpace < (screenWidth - playerWidth)) {
 
-        if (key == 39) {
+        if (key  == 100) {
 
             element.style.left = parseInt(element.style.left) + 10 + 'px';
 
@@ -74,11 +78,11 @@ function droite{}
 
 document.onkeypress = function(event){
 
-    if(event.keyCode == 37){
+    if(key == 37){
         gauche();
     }
 
-    if(event.keyCode == 39){
+    if(key == 39){
         droite();
     }
 }

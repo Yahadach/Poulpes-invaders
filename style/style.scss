@@ -8,6 +8,7 @@ body {
     font-family: "pixel";
     width: 100%;
     text-transform: uppercase;
+    overflow: hidden;
 
     header {
 
@@ -59,14 +60,10 @@ body {
             }
         }
 
-        #player {
+        #player_container {
             display: flex;
             justify-content: center;
 
-            img {
-                width: 10%;
-                height: 10%;
-            }
         }
 
     }

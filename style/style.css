@@ -7,6 +7,7 @@ body {
   font-family: "pixel";
   width: 100%;
   text-transform: uppercase;
+  overflow: hidden;
 }
 body header {
   min-height: 80px;
@@ -49,13 +50,9 @@ body #game #vilans #row_3 img {
   height: 10%;
   margin: 10px;
 }
-body #game #player {
+body #game #player_container {
   display: flex;
   justify-content: center;
-}
-body #game #player img {
-  width: 10%;
-  height: 10%;
 }
 body footer {
   min-height: 50px;
