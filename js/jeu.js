@@ -10,9 +10,6 @@ element.style.position = 'relative';
 element.style.left = '0px';
 
 
-/* tirs */
-
-
 /* Déplacement du joueur */
 document.addEventListener("keypress", function (event) {
 
@@ -31,8 +28,6 @@ document.addEventListener("keypress", function (event) {
         }
     }
 
-    var coco = screenWidth - playerWidth;
-
     if (leftSpace < (screenWidth - playerWidth)) {
 
         if (key == 100) {
@@ -41,31 +36,22 @@ document.addEventListener("keypress", function (event) {
 
         }
     }
-
-    console.log("\n ---> ", parseInt(event.which), " <--- \n");
-
-    if (key == 97) {
-
-        var bullet = document.createElement("div");
-        bullet.setClas
-
-    }
-
 });
 
 
 function myMove() {
-    var elem = document.getElementById("myAnimation");   
+    var elem = document.getElementById("myAnimation");
     var pos = 0;
     var id = setInterval(frame, 5);
+
     function frame() {
         if (pos == 350) {
             clearInterval(id);
-            document.getElementById('myAnimation').style.display='none';
+            document.getElementById('myAnimation').style.display = 'none';
         } else {
-            pos++; 
+            pos++;
             //elem.style.top = pos + 'px'; 
-            elem.style.left = pos + 'px'; 
+            elem.style.left = pos + 'px';
         }
     }
 }
@@ -101,7 +87,7 @@ function animerVilans() {
     var y = parseFloat(getComputedStyle(vilans).top);
 
     var gameHeight = parseFloat(getComputedStyle(game).height);
-    var vilansHeight= parseFloat(getComputedStyle(vilans).height);
+    var vilansHeight = parseFloat(getComputedStyle(vilans).height);
     var playerHeight = parseInt(element.style.height);
 
     var yFull = y + vilansHeight;
@@ -116,10 +102,10 @@ function animerVilans() {
         y = y + "px";
         vilans.style.top = y;
     }
-    if (yFull > yBottom) {
+    if (yFull > yBottom - 120) {
         vilans.parentNode.removeChild(vilans);
         gameOver.style.display = "block";
-        gameOverText.style.display ="block"
+        gameOverText.style.display = "block"
         refresh.style.display = "block";
         return;
 
@@ -139,16 +125,23 @@ refresh.addEventListener('click', function () {
 
 /*************************************** SHOOT ********************************************************************/
 
-var bloc = document.getElementById("bloc");
+var bullet = document.getElementById("bullet");
 var vitesse2 = 7; // Valeur du déplacement en pixels
 
 // Déplace le bloc sur sa gauche
-function deplacerBloc() {
-    // Conversion en nombre de la position gauche du bloc (valeur de la forme "XXpx")
-    var xBloc = parseFloat(getComputedStyle(bloc).bottom);
+function bulletMove() {
+    // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
+    var xBullet = parseFloat(getComputedStyle(bullet).bottom);
     // Déplacement du bloc
-    bloc.style.bottom = (xBloc + vitesse) + "px";
-    // Demande au navigateur d'appeler deplacerBloc dès que possible
-    requestAnimationFrame(deplacerBloc);
+    bullet.style.bottom = (xBullet + vitesse2) + "px";
+    // Demande au navigateur d'appeler bulletMove dès que possible
+    requestAnimationFrame(bulletMove);
 }
-requestAnimationFrame(deplacerBloc); // Début de l'animation
+
+// Début de l'animation a la touche J
+document.onkeypress = function (event) {
+    console.log("-->",event.keyCode,"<--");
+    if (event.keyCode == 106) {
+        requestAnimationFrame(bulletMove);
+    } 
+}

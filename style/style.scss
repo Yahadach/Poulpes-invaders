@@ -93,25 +93,20 @@ body {
             }
         }
 
-
         #player_container {
             display: flex;
             justify-content: center;
 
-       /* shoot    #cadre {
-                #bloc {
-                    position: relative;
-                    left: 0;
-                }
+
+            #bullet {
+                position: relative;
             }
-        */
 
         }
 
     }
 
     footer {
-
 
         min-height: 50px;
         position: absolute;
