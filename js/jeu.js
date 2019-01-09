@@ -4,8 +4,7 @@ var element = document.getElementById('player');
 element.style.width = '90px';
 element.style.height = '60px';
 var playerWidth = parseInt(element.style.width);
-console.log(playerWidth);
-console.log(element.style.width)
+var playerHeight = parseInt(element.style.height);
 
 element.style.position = 'relative';
 element.style.left = '0px';
@@ -22,7 +21,7 @@ document.addEventListener("keypress", function (event) {
     console.log(screenWidth);
     var leftSpace = element.offsetLeft;
     console.log(leftSpace);
-    var key = event.which || event.keyCode || 0;  
+    var key = event.which || event.keyCode || 0;
 
 
     if (leftSpace > 0) {
@@ -33,23 +32,20 @@ document.addEventListener("keypress", function (event) {
     }
 
     var coco = screenWidth - playerWidth;
-    console.log(coco);
-    
 
     if (leftSpace < (screenWidth - playerWidth)) {
 
-        if (key  == 100) {
+        if (key == 100) {
 
             element.style.left = parseInt(element.style.left) + 10 + 'px';
 
         }
     }
 
-    console.log("\n ---> ",parseInt(event.which)," <--- \n");
+    console.log("\n ---> ", parseInt(event.which), " <--- \n");
 
     if (key == 97) {
 
-        element.style.backgroundColor = '#00139F';
         var bullet = document.createElement("div");
         bullet.setClas
 
@@ -62,29 +58,36 @@ window.onload = requestAnimationFrame(animerVilans);
 
 
 var game = document.getElementById("game");
-console.log(game);
+var gameOver = document.getElementById("game_over");
+var gameOverText = document.getElementById("game_over_text");
+var refresh = document.getElementById("refresh");
 var vilans = document.getElementById("vilans");
-console.log(vilans);
-var vitesse = 35; // Valeur du déplacement en pixels
-console.log(vitesse);
+var vitesse = 30; // Valeur du déplacement en pixels
+
 // Conversion en nombre du diamètre du vilans (valeur de la forme "XXpx")
 var diametreVilans = parseFloat(getComputedStyle(vilans).width);
-console.log(diametreVilans);
+
 var animationId = null; // Identifiant de l'animation
-console.log(animationId);
+
 var xMin = 0; // Position gauche minimale (bord gauche)
-console.log(xMin);
+
 var direction = 1; // Sens de déplacement : 1 = droit, 2 = gauche
-console.log(direction);
+
 
 // Déplace le vilans vers la gauche ou la droite
 function animerVilans() {
-    console.log(vilans);
     // Conversion en nombre de la position gauche du vilans (valeur de la forme "XXpx")
     var xVilans = parseFloat(getComputedStyle(vilans).left);
     // Conversion en nombre de la largeur du game (valeur de la forme "XXpx")
     var xMax = parseFloat(getComputedStyle(game).width);
     var y = parseFloat(getComputedStyle(vilans).top);
+
+    var gameHeight = parseFloat(getComputedStyle(game).height);
+    var vilansHeight= parseFloat(getComputedStyle(vilans).height);
+    var playerHeight = parseInt(element.style.height);
+
+    var yFull = y + vilansHeight;
+    var yBottom = gameHeight - playerHeight;
 
     var yVilans = parseFloat(getComputedStyle(vilans).top); // pour le faire descendre
     // Si le vilans arrive à un bord du game
@@ -95,8 +98,11 @@ function animerVilans() {
         y = y + "px";
         vilans.style.top = y;
     }
-    if (y >= 500) {
+    if (yFull > yBottom) {
         vilans.parentNode.removeChild(vilans);
+        gameOver.style.display = "block";
+        gameOverText.style.display ="block"
+        refresh.style.display = "block";
         return;
 
     }
@@ -107,35 +113,24 @@ function animerVilans() {
     animationId = requestAnimationFrame(animerVilans);
 }
 
-
-/**********************************************************************/
-
-
-/*
-var player = document.getElementById("player");
-var y;
+// refresh game
+refresh.addEventListener('click', function () {
+    window.location.reload();
+});
 
 
-function gauche(){
+/*************************************** SHOOT ********************************************************************/
 
-    y=player.style.width;
-    y=parseInt(y);
-    y+=100;
-    y=y+'px';
+var bloc = document.getElementById("bloc");
+var vitesse = 7; // Valeur du déplacement en pixels
 
+// Déplace le bloc sur sa gauche
+function deplacerBloc() {
+    // Conversion en nombre de la position gauche du bloc (valeur de la forme "XXpx")
+    var xBloc = parseFloat(getComputedStyle(bloc).bottom);
+    // Déplacement du bloc
+    bloc.style.bottom = (xBloc + vitesse) + "px";
+    // Demande au navigateur d'appeler deplacerBloc dès que possible
+    requestAnimationFrame(deplacerBloc);
 }
-function droite{}
-
-document.onkeypress = function(event){
-
-    if(key == 37){
-        gauche();
-    }
-
-    if(key == 39){
-        droite();
-    }
-}
-
-
-*/
+requestAnimationFrame(deplacerBloc); // Début de l'animation

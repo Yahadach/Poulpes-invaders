@@ -8,6 +8,7 @@ body {
   width: 100%;
   text-transform: uppercase;
   overflow: hidden;
+  cursor: crosshair;
 }
 body header {
   min-height: 80px;
@@ -20,13 +21,14 @@ body header {
 }
 body header p {
   font-size: 35px;
+  color: #ff4d0b;
 }
 body header h1 {
-  color: coral;
+  color: #ff4d0b;
   text-align: center;
 }
 body #game {
-  background-image: url(../img/poulpe_bg.png);
+  background-image: url(../img/poulpes_bg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -37,6 +39,34 @@ body #game {
   flex-direction: column;
   justify-content: space-between;
 }
+body #game #game_over {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  display: none;
+}
+body #game #game_over_text {
+  z-index: 3;
+  color: white;
+  font-size: 70px;
+  text-align: center;
+  margin-top: 15%;
+  display: none;
+}
+body #game #refresh {
+  text-align: center;
+  margin: auto;
+  display: none;
+  z-index: 3;
+  cursor: pointer;
+  background: white;
+  border-style: outset;
+  height: 65px;
+  width: 155px;
+  font-size: 23px;
+}
 body #game #vilans {
   display: flex;
   justify-content: center;
@@ -46,13 +76,18 @@ body #game #vilans {
   left: 0;
 }
 body #game #vilans img {
-  width: 7%;
-  height: 10%;
-  margin: 10px;
+  margin: 5px;
 }
 body #game #player_container {
   display: flex;
   justify-content: center;
+  /* shoot    #cadre {
+           #bloc {
+               position: relative;
+               left: 0;
+           }
+       }
+   */
 }
 body footer {
   min-height: 50px;
