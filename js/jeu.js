@@ -128,7 +128,9 @@ refresh.addEventListener('click', function () {
 
 // Début de l'animation a la touche J
 document.onkeypress = function (event) {
-    console.log("-->", event.keyCode, "<--");
+
+    var gameHeight = parseFloat(getComputedStyle(game).height);
+    console.log(gameHeight);
 
 
     if (event.keyCode == 106) {
@@ -145,12 +147,19 @@ document.onkeypress = function (event) {
             var vitesse2 = 7; // Valeur du déplacement en pixels
             // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
             var xBullet = parseFloat(getComputedStyle(bullet).bottom);
-            console.log(xBullet);
+   
             // Déplacement du bloc
             bullet.style.bottom = (xBullet + vitesse2) + "px";
+
+            if (xBullet >= gameHeight) {
+                bullet.parentNode.removeChild(bullet);
+            }
+
             // Demande au navigateur d'appeler bulletMove dès que possible
             requestAnimationFrame(bulletMove);
+
         }
         requestAnimationFrame(bulletMove);
     }
+
 }
