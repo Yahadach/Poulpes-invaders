@@ -15,9 +15,9 @@ document.addEventListener("keypress", function (event) {
 
 
     var screenWidth = window.innerWidth;
-    console.log(screenWidth);
+
     var leftSpace = element.offsetLeft;
-    console.log(leftSpace);
+
     var key = event.which || event.keyCode || 0;
 
 
@@ -59,7 +59,7 @@ function myMove() {
 
 
 /*****************************************************VILANS********************************************/
-window.onload = requestAnimationFrame(animerVilans);
+//window.onload = requestAnimationFrame(animerVilans);
 
 
 var game = document.getElementById("game");
@@ -125,23 +125,32 @@ refresh.addEventListener('click', function () {
 
 /*************************************** SHOOT ********************************************************************/
 
-var bullet = document.getElementById("bullet");
-var vitesse2 = 7; // Valeur du déplacement en pixels
-
-// Déplace le bloc sur sa gauche
-function bulletMove() {
-    // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
-    var xBullet = parseFloat(getComputedStyle(bullet).bottom);
-    // Déplacement du bloc
-    bullet.style.bottom = (xBullet + vitesse2) + "px";
-    // Demande au navigateur d'appeler bulletMove dès que possible
-    requestAnimationFrame(bulletMove);
-}
 
 // Début de l'animation a la touche J
 document.onkeypress = function (event) {
-    console.log("-->",event.keyCode,"<--");
+    console.log("-->", event.keyCode, "<--");
+
+
     if (event.keyCode == 106) {
+        var bullet = document.createElement("img");
+        bullet.setAttribute("id", "bullet");
+        bullet.setAttribute("src", "img/bullet.png");
+        bullet.setAttribute("width", "40");
+        bullet.setAttribute("height", "40");
+        bullet.setAttribute("alt", "bullet");
+        document.getElementById("player_container").appendChild(bullet);
+
+        function bulletMove() {
+
+            var vitesse2 = 7; // Valeur du déplacement en pixels
+            // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
+            var xBullet = parseFloat(getComputedStyle(bullet).bottom);
+            console.log(xBullet);
+            // Déplacement du bloc
+            bullet.style.bottom = (xBullet + vitesse2) + "px";
+            // Demande au navigateur d'appeler bulletMove dès que possible
+            requestAnimationFrame(bulletMove);
+        }
         requestAnimationFrame(bulletMove);
-    } 
+    }
 }
