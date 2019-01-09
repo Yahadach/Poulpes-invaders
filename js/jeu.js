@@ -1,4 +1,3 @@
-/*****************************************************PLAYER********************************************/
 var element = document.getElementById('player');
 
 element.style.width = '90px';
@@ -57,6 +56,47 @@ document.addEventListener("keypress", function (event) {
 
 });
 
+
+function myMove() {
+    var elem = document.getElementById("myAnimation");   
+    var pos = 0;
+    var id = setInterval(frame, 5);
+    function frame() {
+        if (pos == 350) {
+            clearInterval(id);
+            document.getElementById('myAnimation').style.display='none';
+        } else {
+            pos++; 
+            //elem.style.top = pos + 'px'; 
+            elem.style.left = pos + 'px'; 
+        }
+    }
+}
+
+
+
+/*****************************************************PLAYER********************************************/
+
+
+
+
+
+
+//      S H  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO T
+
+var bloc = document.getElementById("bloc");
+var vitesse = 7; // Valeur du déplacement en pixels
+
+// Déplace le bloc sur sa gauche
+function deplacerBloc() {
+    // Conversion en nombre de la position gauche du bloc (valeur de la forme "XXpx")
+    var xBloc = parseFloat(getComputedStyle(bloc).bottom);
+    // Déplacement du bloc
+    bloc.style.bottom = (xBloc + vitesse) + "px";
+    // Demande au navigateur d'appeler deplacerBloc dès que possible
+    requestAnimationFrame(deplacerBloc);
+}
+requestAnimationFrame(deplacerBloc); // Début de l'animation
 /*****************************************************VILANS********************************************/
 window.onload = requestAnimationFrame(animerVilans);
 
@@ -65,7 +105,7 @@ var game = document.getElementById("game");
 console.log(game);
 var vilans = document.getElementById("vilans");
 console.log(vilans);
-var vitesse = 35; // Valeur du déplacement en pixels
+var vitesse = 10; // Valeur du déplacement en pixels
 console.log(vitesse);
 // Conversion en nombre du diamètre du vilans (valeur de la forme "XXpx")
 var diametreVilans = parseFloat(getComputedStyle(vilans).width);
