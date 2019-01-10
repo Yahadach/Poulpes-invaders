@@ -78,12 +78,13 @@ body #game #vilans {
 body #game #vilans img {
   margin: 5px;
 }
-body #game #player_container {
-  display: flex;
-  justify-content: center;
+body #game #player_container #player {
+  position: absolute;
 }
 body #game #player_container .bullet {
   position: absolute;
+  text-align: center;
+  left: 50%;
 }
 body footer {
   min-height: 50px;

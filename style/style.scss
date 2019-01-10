@@ -94,12 +94,18 @@ body {
         }
 
         #player_container {
-            display: flex;
-            justify-content: center;
+
+            
+
+            #player{
+                position: absolute;
+            }
           
 
             .bullet {
                 position:absolute;
+                text-align: center;
+                left: 50%;
             }
 
         }
