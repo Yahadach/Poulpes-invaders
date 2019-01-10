@@ -1,24 +1,78 @@
+/*************************************** ACCUEIL ********************************************************************/
+/*
+window.onload = hide();
+
+function hide() {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("points").style.display = "none";
+}
+
+document.body.onkeypress = function (e) {
+    console.log(" ---> ",e.keyCode," <-- ");
+    
+    if (e.keyCode == 32) {
+        console.log(" ---> ",e.keyCode," <-- ");
+ 
+        document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
+        document.getElementById("points").style.display = "block";
+        document.getElementById("game").style.display = "block";
+    }
+}
+*/
+var ship = document.getElementById('player');
+
+ship.style.width = '90px';
+ship.style.height = '63px';
+var playerWidth = parseInt(ship.style.width);
+var playerHeight = parseInt(ship.style.height);
+
+
+ship.style.left = '0px';
+
+
+/********************************* GET POSITION ******************************* */
+
+function getPositionX(x) {
+    var l = x.offsetLeft;
+    return l;
+}
+
+function getPositionY(x) {
+
+    var t = x.offsetTop;
+    return t;
+}
+
+
 /*************************************** SHOOT ********************************************************************/
 
 
 // Début de l'animation a la touche J
+
 document.onkeypress = function (event) {
 
     var gameHeight = parseFloat(getComputedStyle(game).height);
-    console.log(gameHeight);
+    var gameWidth = parseFloat(getComputedStyle(game).width);
+
 
 
     if (event.keyCode == 106) {
+
         var bullet = document.createElement("img");
         bullet.setAttribute("class", "bullet");
         bullet.setAttribute("src", "img/bullet.png");
         bullet.setAttribute("width", "40");
         bullet.setAttribute("height", "40");
         bullet.setAttribute("alt", "bullet");
-        console.log(bullet.style.left);
         document.getElementById("player_container").appendChild(bullet);
 
+        console.log(" ship -----> ", ship.style.left);
+
         function bulletMove() {
+
+            bullet.style.left = ship.style.left
+            console.log(" bullet -----> ", bullet.style.left);
+
 
             var vitesse2 = 7; // Valeur du déplacement en pixels
             // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
@@ -40,6 +94,7 @@ document.onkeypress = function (event) {
 }
 
 /*****************************************************PLAYER********************************************/
+
 var ship = document.getElementById('player');
 
 ship.style.width = '90px';
@@ -66,7 +121,7 @@ document.addEventListener("keypress", function (event) {
 
         if (key == 113) {
             ship.style.left = parseInt(ship.style.left) - 10 + 'px';
-            
+
         }
     }
 
@@ -78,9 +133,9 @@ document.addEventListener("keypress", function (event) {
     }
 });
 
-
 /*****************************************************VILANS********************************************/
-window.onload = requestAnimationFrame(animerVilans);
+
+//window.onload = requestAnimationFrame(animerVilans);
 
 
 var game = document.getElementById("game");
@@ -142,3 +197,12 @@ function animerVilans() {
 refresh.addEventListener('click', function () {
     window.location.reload();
 });
+
+/*****************************************************SCORE********************************************/
+
+function calculScore() {
+    var score = 0;
+    var counter = document.getElementById("counter");
+    score = score + 10;
+    counter.textContent = score;
+}

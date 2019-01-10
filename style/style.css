@@ -1,7 +1,37 @@
+/********************************************************* FONT **************************************************************/
 @font-face {
   font-family: "pixel";
   src: url("../font/uni0553.ttf");
 }
+/********************************************************* FIRST ACCUEIL **************************************************************/
+/*
+#home {
+    text-align: center;
+    background-color: #020d13;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh; 
+
+    p {
+        font-size: 40px;
+
+        .arrow {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff4d0b;
+        }
+
+        #fire {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff4d0b;
+        }
+    }
+}
+*/
+/********************************************************* SECOND GAME **************************************************************/
 body {
   position: absolute;
   font-family: "pixel";
@@ -79,8 +109,10 @@ body #game #vilans img {
   margin: 5px;
 }
 body #game #player_container {
-  display: flex;
-  justify-content: center;
+  text-align: center;
+}
+body #game #player_container #player {
+  position: relative;
 }
 body #game #player_container .bullet {
   position: absolute;
