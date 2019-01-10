@@ -96,10 +96,10 @@ body {
         #player_container {
             display: flex;
             justify-content: center;
+          
 
-
-            #bullet {
-                position: relative;
+            .bullet {
+                position:absolute;
             }
 
         }

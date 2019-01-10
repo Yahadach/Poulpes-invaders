@@ -82,8 +82,8 @@ body #game #player_container {
   display: flex;
   justify-content: center;
 }
-body #game #player_container #bullet {
-  position: relative;
+body #game #player_container .bullet {
+  position: absolute;
 }
 body footer {
   min-height: 50px;
