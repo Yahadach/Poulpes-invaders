@@ -6,7 +6,7 @@
 }
 
 /********************************************************* FIRST ACCUEIL **************************************************************/
-/*
+
 #home {
     text-align: center;
     background-color: #020d13;
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh; 
+    min-height: 100vh;
 
     p {
         font-size: 40px;
@@ -32,7 +32,7 @@
         }
     }
 }
-*/
+
 /********************************************************* SECOND GAME **************************************************************/
 
 body {
@@ -131,6 +131,7 @@ body {
 
             #player {
                 position: relative;
+                z-index: 2;
 
             }
 

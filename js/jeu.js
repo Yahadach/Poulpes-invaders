@@ -1,24 +1,18 @@
 /*************************************** ACCUEIL ********************************************************************/
-/*
-window.onload = hide();
 
 function hide() {
-    document.getElementById("game").style.display = "none";
-    document.getElementById("points").style.display = "none";
+    window.onload;
+    document.getElementById("game").style.display = "hide";
 }
 
 document.body.onkeypress = function (e) {
-    console.log(" ---> ",e.keyCode," <-- ");
     
     if (e.keyCode == 32) {
-        console.log(" ---> ",e.keyCode," <-- ");
  
         document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
-        document.getElementById("points").style.display = "block";
-        document.getElementById("game").style.display = "block";
+        document.getElementById("game").style.display = "visible";
     }
 }
-*/
 
 /***************************************************** VARIABLES GENERAL ********************************************/
 
@@ -135,13 +129,14 @@ document.addEventListener("keypress", function (event) {
     }
     //shoot
     if (event.keyCode == 106) {
-        
+
         //on récupère l'écartement entre ship et écran
         var ecartementGauche = ship.offsetLeft;
         //on récupère les données de la bullet
         var bullet = document.createElement("img");
         //écartement bullet - ecran =  ship - ecran
-        bullet.style.left = ecartementGauche + "px";
+        bullet.style.left = ecartementGauche + 25 + "px";
+        
         bullet.setAttribute("class", "bullet");
         bullet.setAttribute("src", "img/bullet.png");
         bullet.setAttribute("width", "40");
@@ -158,10 +153,17 @@ document.addEventListener("keypress", function (event) {
             var xBullet = parseFloat(getComputedStyle(bullet).bottom);
             // Déplacement du bloc
             bullet.style.bottom = (xBullet + vitesse2) + "px";
+            
+            var x=0;
+            if (bullet.style.display = "block") {
+                x += bullet.offsetTop;
+                console.log("valeur de x Missile" + x);
+            }
 
             if (xBullet >= gameHeight) {
                 //quand on atteint la hauteur max de la zone du jeu on supprime la bullet
                 bullet.parentNode.removeChild(bullet);
+                return;
             }
 
             // Demande au navigateur d'appeler bulletMove dès que possible
