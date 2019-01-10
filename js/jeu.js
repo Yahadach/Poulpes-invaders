@@ -162,6 +162,7 @@ document.addEventListener("keypress", function (event) {
             if (xBullet >= gameHeight) {
                 //quand on atteint la hauteur max de la zone du jeu on supprime la bullet
                 bullet.parentNode.removeChild(bullet);
+                return;
             }
 
             // Demande au navigateur d'appeler bulletMove dès que possible
