@@ -87,7 +87,8 @@ body {
             display: none;
         }
 
-        #game_over_text {
+        #game_over_text,
+        #winner {
             z-index: 3;
             color: white;
             font-size: 70px;
@@ -107,8 +108,6 @@ body {
             height: 65px;
             width: 155px;
             font-size: 23px;
-
-
         }
 
         #vilans {

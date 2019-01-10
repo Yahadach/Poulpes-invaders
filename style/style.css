@@ -73,7 +73,8 @@ body #game #game_over {
   z-index: 1;
   display: none;
 }
-body #game #game_over_text {
+body #game #game_over_text,
+body #game #winner {
   z-index: 3;
   color: white;
   font-size: 70px;

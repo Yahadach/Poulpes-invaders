@@ -11,6 +11,8 @@ document.body.onkeypress = function (e) {
 
         document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
         document.getElementById("game").style.display = "visible";
+        //lancement du mouvement des poulpes au chargement de la page
+        //window.onload = requestAnimationFrame(animerVilans);
     }
 }
 
@@ -45,16 +47,10 @@ var playerHeight = parseInt(ship.style.height);
 var gameHeight = parseFloat(getComputedStyle(game).height);
 var gameWidth = parseFloat(getComputedStyle(game).width);
 
-/**** poulpe ****/
-var poulpe = document.getElementById("octopus2");
-
-/*** ****/
-
+var score = 0;
+var score2;
 
 /*****************************************************VILANS********************************************/
-
-//lancement du mouvement des poulpes au chargement de la page
-window.onload = requestAnimationFrame(animerVilans);
 
 //Valeur du déplacement en pixels
 var vitesse = 2;
@@ -96,6 +92,7 @@ function animerVilans() {
         gameOver.style.display = "block";
         gameOverText.style.display = "block"
         refresh.style.display = "block";
+        ship.style.display = "none"
         return;
 
     }
@@ -152,34 +149,48 @@ document.addEventListener("keypress", function (event) {
         //fonction du mouvement de la bullet
         function bulletMove() {
 
+            var coordBullet = bullet.getBoundingClientRect();
+            console.log(" \n top ---> ", coordBullet.top, " \n right ---> ", coordBullet.right, " \n bottom ---> ", coordBullet.bottom, " \n left ---> ", coordBullet.left);
+
             // Valeur du déplacement en pixels
             var vitesse2 = 7;
             // Conversion en nombre de la position gauche du bullet (valeur de la forme "XXpx")
             var xBullet = parseFloat(getComputedStyle(bullet).bottom);
-            // Déplacement du bloc
-            bullet.style.bottom = (xBullet + vitesse2) + "px";
-
+            // Valeur en pixels du top de la balle
             var x = 0;
 
-            var poulpeInDiv = poulpe.offsetTop;
+            //poulpes
+            var poulpes = document.getElementsByClassName("octopus");
             var poulpeCrew = vilans;
-            var poulpeCrewTop = poulpeCrew.offsetTop;
-            var poulpeTop = poulpeInDiv + poulpeCrewTop;
+
 
             // Récuperation de la valeur top de la balle
             if (bullet.style.display = "block") {
                 x += bullet.offsetTop;
-                console.log("valeur de x Missile" + x);
+                // console.log("\n top du bullet ---> ", x);
             }
 
-            //quand on atteint la hauteur max de la zone du jeu on supprime la bullet
+            // Déplacement du bloc
+            bullet.style.bottom = (xBullet + vitesse2) + "px";
+
             if (xBullet >= gameHeight) {
                 bullet.parentNode.removeChild(bullet);
                 return;
             }
 
-            if (poulpeTop >= x) {
-                poulpe.style.display = "none";
+
+            for (i = 0; i < poulpes.length; i++) {
+                var coordPoulpe = poulpes[i].getBoundingClientRect();
+
+                if (coordBullet.left < coordPoulpe.left + coordPoulpe.width && coordBullet.left + coordBullet.width > coordPoulpe.left && coordBullet.top < coordPoulpe.top + coordPoulpe.height && coordBullet.top + coordBullet.height > coordPoulpe.top) {
+                    poulpes[i].parentNode.removeChild(poulpes[i]);
+                    delete poulpes[i];
+                    bullet.parentNode.removeChild(bullet);
+                    score = calculScore(score);
+                    return;
+
+                }
+
             }
 
             // Demande au navigateur d'appeler bulletMove dès que possible
@@ -192,14 +203,15 @@ document.addEventListener("keypress", function (event) {
 
 /*****************************************************SCORE********************************************/
 
-function calculScore() {
-    var score = 0;
+function calculScore(score) {
     var counter = document.getElementById("counter");
-    score = score + 10;
+    score += 10;
     counter.textContent = score;
+    return score ;
 }
 
 /***************************************************** REFRESH ********************************************/
+
 // refresh game
 refresh.addEventListener('click', function () {
     window.location.reload();
