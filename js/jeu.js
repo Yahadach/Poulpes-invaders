@@ -12,7 +12,7 @@ document.body.onkeypress = function (e) {
         document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
         document.getElementById("game").style.display = "visible";
         //lancement du mouvement des poulpes au chargement de la page
-        //window.onload = requestAnimationFrame(animerVilans);
+        window.onload = requestAnimationFrame(animerVilans);
     }
 }
 
@@ -26,6 +26,9 @@ var xMax = parseFloat(getComputedStyle(game).width);
 //game over img + text hide
 var gameOver = document.getElementById("game_over");
 var gameOverText = document.getElementById("game_over_text");
+
+//message winner
+var winner = document.getElementById("winner");
 
 //button refresh hide
 var refresh = document.getElementById("refresh");
@@ -150,7 +153,6 @@ document.addEventListener("keypress", function (event) {
         function bulletMove() {
 
             var coordBullet = bullet.getBoundingClientRect();
-            console.log(" \n top ---> ", coordBullet.top, " \n right ---> ", coordBullet.right, " \n bottom ---> ", coordBullet.bottom, " \n left ---> ", coordBullet.left);
 
             // Valeur du déplacement en pixels
             var vitesse2 = 7;
@@ -167,7 +169,6 @@ document.addEventListener("keypress", function (event) {
             // Récuperation de la valeur top de la balle
             if (bullet.style.display = "block") {
                 x += bullet.offsetTop;
-                // console.log("\n top du bullet ---> ", x);
             }
 
             // Déplacement du bloc
@@ -187,11 +188,17 @@ document.addEventListener("keypress", function (event) {
                     delete poulpes[i];
                     bullet.parentNode.removeChild(bullet);
                     score = calculScore(score);
+                    if (poulpes.length == 0) {
+                        //message
+                        winner.style.display = "block";
+                        vilans.parentNode.removeChild(vilans);
+                        return;
+                    }
                     return;
-
                 }
 
             }
+
 
             // Demande au navigateur d'appeler bulletMove dès que possible
             requestAnimationFrame(bulletMove);
@@ -207,7 +214,7 @@ function calculScore(score) {
     var counter = document.getElementById("counter");
     score += 10;
     counter.textContent = score;
-    return score ;
+    return score;
 }
 
 /***************************************************** REFRESH ********************************************/

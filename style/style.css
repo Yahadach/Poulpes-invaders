@@ -64,6 +64,7 @@ body #game {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 body #game #game_over {
   position: absolute;
@@ -96,7 +97,7 @@ body #game #refresh {
 }
 body #game #vilans {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   position: relative;
   width: 80%;
