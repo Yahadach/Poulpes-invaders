@@ -6,9 +6,9 @@ function hide() {
 }
 
 document.body.onkeypress = function (e) {
-    
+
     if (e.keyCode == 32) {
- 
+
         document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
         document.getElementById("game").style.display = "visible";
     }
@@ -44,6 +44,11 @@ var playerHeight = parseInt(ship.style.height);
 //hauteur et largeur de la zone de jeu
 var gameHeight = parseFloat(getComputedStyle(game).height);
 var gameWidth = parseFloat(getComputedStyle(game).width);
+
+/**** poulpe ****/
+var poulpe = document.getElementById("octopus2");
+
+/*** ****/
 
 
 /*****************************************************VILANS********************************************/
@@ -136,7 +141,7 @@ document.addEventListener("keypress", function (event) {
         var bullet = document.createElement("img");
         //écartement bullet - ecran =  ship - ecran
         bullet.style.left = ecartementGauche + 25 + "px";
-        
+
         bullet.setAttribute("class", "bullet");
         bullet.setAttribute("src", "img/bullet.png");
         bullet.setAttribute("width", "40");
@@ -153,17 +158,28 @@ document.addEventListener("keypress", function (event) {
             var xBullet = parseFloat(getComputedStyle(bullet).bottom);
             // Déplacement du bloc
             bullet.style.bottom = (xBullet + vitesse2) + "px";
-            
-            var x=0;
+
+            var x = 0;
+
+            var poulpeInDiv = poulpe.offsetTop;
+            var poulpeCrew = vilans;
+            var poulpeCrewTop = poulpeCrew.offsetTop;
+            var poulpeTop = poulpeInDiv + poulpeCrewTop;
+
+            // Récuperation de la valeur top de la balle
             if (bullet.style.display = "block") {
                 x += bullet.offsetTop;
                 console.log("valeur de x Missile" + x);
             }
 
+            //quand on atteint la hauteur max de la zone du jeu on supprime la bullet
             if (xBullet >= gameHeight) {
-                //quand on atteint la hauteur max de la zone du jeu on supprime la bullet
                 bullet.parentNode.removeChild(bullet);
                 return;
+            }
+
+            if (poulpeTop >= x) {
+                poulpe.style.display = "none";
             }
 
             // Demande au navigateur d'appeler bulletMove dès que possible
