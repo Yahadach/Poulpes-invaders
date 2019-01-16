@@ -9,7 +9,9 @@
 
 #home {
     text-align: center;
-    background-color: #020d13;
+    background-image: url(../img/accueil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     color: white;
     display: flex;
     flex-direction: column;
@@ -42,6 +44,7 @@ body {
     text-transform: uppercase;
     overflow: hidden;
     cursor: crosshair;
+    margin: 0;
 
     header {
 
@@ -52,6 +55,7 @@ body {
         width: 100%;
         display: flex;
         justify-content: space-around;
+        align-items: baseline;
 
         p {
             font-size: 35px;
@@ -71,8 +75,6 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        padding-bottom: 50px;
-        padding-top: 80px;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -109,6 +111,7 @@ body {
             height: 65px;
             width: 155px;
             font-size: 23px;
+            font-family: pixel;
         }
 
         #vilans {
@@ -118,7 +121,7 @@ body {
             position: relative;
             width: 80%;
             left: 0;
-
+            padding-top: 112px;
 
             img {
                 margin: 5px;
@@ -128,6 +131,7 @@ body {
         #player_container {
 
             text-align: center;
+            margin-bottom: 55px;
 
             #player {
                 position: relative;
@@ -157,4 +161,30 @@ body {
             margin-top: 10px;
         }
     }
+}
+
+
+/********************************************************* MEDIA QUERIES **************************************************************/
+@media (min-width: 1020px) and (max-width: 1200px) {
+#vilans img {
+width: 75px;
+height: 75px;
+}
+}
+
+@media (max-width: 1019px) {
+#vilans img {
+width: 60px;
+height: 60px;
+}
+}
+
+@media (max-width: 930px) {
+#title p {
+font-size: 30px;
+}
+
+h1 {
+font-size: 30px;
+}
 }
