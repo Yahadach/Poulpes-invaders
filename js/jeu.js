@@ -3,6 +3,52 @@
 document.body.onkeypress = function (e) {
     if (e.keyCode == 32) {
         document.getElementById("home").parentNode.removeChild(document.getElementById("home"));
+        var marginLeft = 0;
+        var imgWidth= 100;
+        var spacing=0;
+
+
+        /******************************** GENERER DES POULPES **************************************/
+        /* <img src="img/vilans_poulpe_1.png" height="95" width="87" alt="naughty octopus" class="octopus"> */
+        for(var i=0;i<12;i++){
+            var random = Math.floor(Math.random() * Math.floor(4))+1;
+            var poulpe = document.createElement("img");
+            //poulpe.style.padding = 25 + "px";
+            poulpe.setAttribute("class", "octopus");
+            poulpe.setAttribute("src", "img/vilans_poulpe_"+random+".png");
+            poulpe.setAttribute("width", "87");
+            poulpe.setAttribute("height", "95");
+            poulpe.setAttribute("alt", "naughty octopus");
+            /******/
+            poulpe.style.position = "absolute";
+            poulpe.style.marginLeft = ""+spacing+"px";
+            //poulpe.style.marginRight = ""+marginRight+"px";
+            spacing = imgWidth+marginLeft;
+            marginLeft = marginLeft + 100;
+            document.getElementById("vilans").appendChild(poulpe);
+        }
+
+        var marginLeft = 0;
+        spacing=0;
+
+        for(var i=13;i<25;i++){
+            var random = Math.floor(Math.random() * Math.floor(4))+1;
+            var poulpe = document.createElement("img");
+            //poulpe.style.padding = 25 + "px";
+            poulpe.setAttribute("class", "octopus");
+            poulpe.setAttribute("src", "img/vilans_poulpe_"+random+".png");
+            poulpe.setAttribute("width", "87");
+            poulpe.setAttribute("height", "95");
+            poulpe.setAttribute("alt", "naughty octopus");
+            /******/
+            poulpe.style.position = "absolute";
+            poulpe.style.marginLeft = ""+spacing+"px";
+            poulpe.style.marginTop = "100px";
+            //poulpe.style.marginRight = ""+marginRight+"px";
+            spacing = imgWidth+marginLeft;
+            marginLeft = marginLeft + 100;
+            document.getElementById("vilans").appendChild(poulpe);
+        }
         window.onload = requestAnimationFrame(vilansMove);
     }
 }
@@ -33,6 +79,7 @@ var playerWidth = parseInt(ship.style.width);
 var playerHeight = parseInt(ship.style.height);
 
 var score = 0;
+
 
 /***************************************************** VILANS ********************************************/
 
@@ -130,6 +177,8 @@ document.addEventListener("keypress", function (event) {
                         winner.style.display = "block";
                         vilans.parentNode.removeChild(vilans);
                         refresh.style.display = "block";
+                        //var blockVilans = document.getElementById("vilans");
+                        //blockVilans.style.width="30%";
                         return;
                     }
                     return;

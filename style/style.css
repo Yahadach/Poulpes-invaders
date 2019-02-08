@@ -99,16 +99,15 @@ body #game #refresh {
   font-family: pixel;
 }
 body #game #vilans {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
   position: relative;
   width: 80%;
+  height: 15%;
   left: 0;
-  padding-top: 112px;
-}
-body #game #vilans img {
-  margin: 5px;
+  margin-top: 112px;
+  /*img {
+      position: relative;
+      margin: 5px;
+  }*/
 }
 body #game #player_container {
   text-align: center;
